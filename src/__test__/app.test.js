@@ -1,14 +1,14 @@
-import descriptionObj, { character } from '../js/app';
+import Validator from '../js/app';
 
-test('checking for a true array', () => {
-  const received = descriptionObj(character);
-  const expected = [
-    {
-      id: 8, name: 'Двойной выстрел', icon: 'http://...', description: 'Двойной выстрел наносит двойной урон',
-    },
-    {
-      id: 9, name: 'Нокаутирующий удар', icon: 'http://...', description: 'Описание недоступно',
-    },
-  ];
-  expect(received).toStrictEqual(expected);
+test('checking validate name', () => {
+  const newUser = new Validator('skyWalker');
+  const received = newUser.validateUsername();
+  const expected = true;
+  expect(received).toBe(expected);
+});
+test('invalid name check', () => {
+  expect(() => {
+    const newUser = new Validator('Kai1000Ren');
+    newUser.validateUsername();
+  }).toThrow('Wrong user name!');
 });
